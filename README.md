@@ -18,7 +18,7 @@ if you just did the mondatory part you will want to run the following command:
 
     1 means walls 
     
-    0 means empty space
+    0 means empty spaces
     
     C as in collectables
     
@@ -36,7 +36,7 @@ In case you did the bonus part you may want to run  the following command:
 
     1 means walls 
     
-    0 means empty space
+    0 means empty spaces
     
     C as in collectables
     
