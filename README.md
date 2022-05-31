@@ -48,6 +48,6 @@ P as in player
 
 ## Final word
 
-You can change the map characters if you want to customize it to your project needs. Have fun with it!
+You can change the map characters in order to customize it to your project needs it only has to be a set of 5 or 6 characters. Have fun with it!
 
 PS: This tool does not check if there is a valid path for the player to win. But it may soon...
