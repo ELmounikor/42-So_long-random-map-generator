@@ -14,17 +14,17 @@ if you just did the mondatory part you will want to run the following command:
 
     "./map_maker "10CEP" [number_of_rows] [number_of_columns] [file_name]"
 
-    "10CEP" = map characters
+        "10CEP" = map characters
 
-    1 means walls 
+        1 means walls 
     
-    0 means empty spaces
+        0 means empty spaces
     
-    C as in collectables
+        C as in collectables
     
-    E as in exits
+        E as in exits
     
-    P as in player
+        P as in player
 
 ### Bonus part map
 
@@ -32,19 +32,19 @@ In case you did the bonus part you may want to run  the following command:
 
     "./map_maker "10CEMP" [number_of_rows] [number_of_columns] [number_of_monsters] [file_name]"
 
-    "10CEP" = map characters
+        "10CEP" = map characters
 
-    1 means walls 
+        1 means walls 
     
-    0 means empty spaces
+        0 means empty spaces
     
-    C as in collectables
+        C as in collectables
     
-    E as in exits
+        E as in exits
     
-    M as in monsters
+        M as in monsters
     
-    P as in player
+        P as in player
     
 You can change the map characters if you want to customize it to your project needs. Have fun with it!
 PS: This tool does not check if there is a valid path for the player to win. I may build one soon ^^
