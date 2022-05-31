@@ -2,7 +2,7 @@
 
 As a fellow 1337/42 student, I had to manually write a 2D map to test my [So_long game](https://github.com/ELmounikor/Ninja-Froggy-s-Treasure-Hunt). 
 We have to test it in different sizes and combinations which can be time consuming for all of us. 
-This tool builds rectangular random maps that is customizable to everyone's use!
+This tool builds rectangular random valid maps that is customizable to everyone's use!
 
 ## How to use
 
@@ -47,4 +47,4 @@ M as in monsters
 P as in player
     
 You can change the map characters if you want to customize it to your project needs. Have fun with it!
-PS: This tool does not check if there is a valid path for the player to win. I may build one soon ^^
+PS: This tool does not check if there is a valid path for the player to win. But it may soon ^^
