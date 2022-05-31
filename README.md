@@ -11,9 +11,10 @@ After cloning the repo, run "make".
 ### Mandatory part map
 
 if you just did the mondatory part you will want to run the following command:
-"./map_maker "10CEP" [number_of_rows] [number_of_columns] [file_name]"
 
-"10CEP" = map characters
+    "./map_maker "10CEP" [number_of_rows] [number_of_columns] [file_name]"
+
+    "10CEP" = map characters
 
     1 means walls 
     
@@ -28,9 +29,10 @@ if you just did the mondatory part you will want to run the following command:
 ### Bonus part map
 
 In case you did the bonus part you may want to run  the following command:
-"./map_maker "10CEMP" [number_of_rows] [number_of_columns] [number_of_monsters] [file_name]"
 
-"10CEP" = map characters
+    "./map_maker "10CEMP" [number_of_rows] [number_of_columns] [number_of_monsters] [file_name]"
+
+    "10CEP" = map characters
 
     1 means walls 
     
