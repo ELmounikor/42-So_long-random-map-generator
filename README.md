@@ -47,4 +47,5 @@ M as in monsters
 P as in player
     
 You can change the map characters if you want to customize it to your project needs. Have fun with it!
-PS: This tool does not check if there is a valid path for the player to win. But it may soon ^^
+
+PS: This tool does not check if there is a valid path for the player to win. But it may soon...
