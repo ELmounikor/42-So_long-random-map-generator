@@ -71,6 +71,7 @@ char	**map_generator(char *set, int nbrw, int nbcl, int nbofmonsters)
 				free(map[i]);
 			free(map);
 		}
+		map[i] = NULL;
 		j = -1;
 		while (++j < nbcl)
 		{
