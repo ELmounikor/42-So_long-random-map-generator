@@ -30,7 +30,7 @@ P as in player
 
 In case you did the bonus part you may want to run  the following command:
 
-    ./map_maker "10CEMP" [number_of_rows] [number_of_columns] [number_of_monsters] [file_name]
+    ./map_maker "10CEMP" [number_of_rows] [number_of_columns] [number_of_monsters >= 1] [file_name]
 
 "10CEMP" = map characters
 
