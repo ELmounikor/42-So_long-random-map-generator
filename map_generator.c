@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   map_generator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kora <mel-kora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 17:57:07 by mel-kora          #+#    #+#             */
-/*   Updated: 2022/05/31 22:22:26 by mel-kora         ###   ########.fr       */
+/*   Updated: 2022/07/23 12:52:17 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Libft/Libft.h"
+#define	UP		-1
+#define DOWN	1
+#define RIGHT	1
+#define LEFT	-1
 
 int	check(char **map, char *set)
 {
@@ -50,6 +54,14 @@ void	freemap(char **map)
 	free(map);
 }
 
+check_for_valid_path(char **map, int c_row, int c_col, int length, int width)
+{
+	if (map[c_row + UP][c_col] == '1' &&
+		map[c_row + UP][c_col + RIGHT] == '1' &&
+		map[c_row][c_col + RIGHT] == '1' &&
+		map[c_row + UP][c_col] == '1')
+}
+
 char	**map_generator(char *set, int nbrw, int nbcl, int nbofmonsters)
 {
 	char	**map;
@@ -58,18 +70,20 @@ char	**map_generator(char *set, int nbrw, int nbcl, int nbofmonsters)
 	int		i;
 	int		j;
 
-	map = (char **) malloc ((nbrw + 1) * sizeof (char *));
+	map = (char **) calloc ((nbrw + 1) * sizeof (char *));
 	if (!map)
 		return (NULL);
 	i = -1;
 	while (++i < nbrw)
 	{
-		map[i] = (char *) malloc(nbcl + 1);
+		map[i] = (char *) calloc(nbcl + 1);
 		if (!map[i])
 		{
 			while (i-- > 0)
 				free(map[i]);
 			free(map);
+			// needs to return because malloc faild
+			return (NULL);
 		}
 		j = -1;
 		while (++j < nbcl)
@@ -82,7 +96,8 @@ char	**map_generator(char *set, int nbrw, int nbcl, int nbofmonsters)
 					map[i][j] = set[0];
 				else
 				{
-					map[i][j] = set[rand() % (ft_strlen(set) - flag)];
+					if (set[rand() % (ft_strlen(set) - flag)] == '1' && check_for_valid_path(map, i, j, nbrw, nbcl))
+						map[i][j] = set[rand() % (ft_strlen(set) - flag)];
 					if (map[i][j] == set[ft_strlen(set) - 1])
 						flag++;
 					else if (ft_strlen(set) == 6 && map[i][j] == set[ft_strlen(set) - 2])
@@ -117,10 +132,12 @@ int	main(int ac, char **av)
 		nbofcolumns = my_atoi(av[3]);
 		if (nbofcolumns < 4 || nbofrows < 4)
 			ft_error();
-		if (ac == 5)
+		if (ac == 6)
 			nbofmonsters = my_atoi(av[4]);
 		file = fopen(av[ac - 1], "wb");
 		map = map_generator(av[1], nbofrows, nbofcolumns, nbofmonsters);
+		if (!map)
+			return (1);
 		while (!check(map, av[1]))
 		{
 			freemap(map);
