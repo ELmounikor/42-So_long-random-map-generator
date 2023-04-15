@@ -40,12 +40,18 @@ ${MAP_NAME}:${MAP_OBJS}
 			##########                                                                                        ##########
 			############################################################################################################
 
+maze:
+	make -C ./maze_generator/ && mv maze_generator/maze_maker .
+
 clean:
 			${RM} ${OBJS} ${MAP_OBJS}
+			make -C ./maze_generator/ clean
 
 fclean:		clean
 			${RM} ${NAME} ${MAP_NAME}
+			make -C ./maze_generator/ fclean
 
 re:			fclean all
+			make -C ./maze_generator/ re
 
 .PHONY:		all clean fclean re

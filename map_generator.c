@@ -54,13 +54,6 @@ void	freemap(char **map)
 	free(map);
 }
 
-check_for_valid_path(char **map, int c_row, int c_col, int length, int width)
-{
-	if (map[c_row + UP][c_col] == '1' &&
-		map[c_row + UP][c_col + RIGHT] == '1' &&
-		map[c_row][c_col + RIGHT] == '1' &&
-		map[c_row + UP][c_col] == '1')
-}
 
 char	**map_generator(char *set, int nbrw, int nbcl, int nbofmonsters)
 {
@@ -70,13 +63,13 @@ char	**map_generator(char *set, int nbrw, int nbcl, int nbofmonsters)
 	int		i;
 	int		j;
 
-	map = (char **) calloc ((nbrw + 1) * sizeof (char *));
+	map = (char **) calloc ((nbrw + 1), sizeof (char *));
 	if (!map)
 		return (NULL);
 	i = -1;
 	while (++i < nbrw)
 	{
-		map[i] = (char *) calloc(nbcl + 1);
+		map[i] = (char *) calloc(nbcl + 1, sizeof(char));
 		if (!map[i])
 		{
 			while (i-- > 0)
@@ -96,7 +89,7 @@ char	**map_generator(char *set, int nbrw, int nbcl, int nbofmonsters)
 					map[i][j] = set[0];
 				else
 				{
-					if (set[rand() % (ft_strlen(set) - flag)] == '1' && check_for_valid_path(map, i, j, nbrw, nbcl))
+					if (set[rand() % (ft_strlen(set) - flag)] == '1')
 						map[i][j] = set[rand() % (ft_strlen(set) - flag)];
 					if (map[i][j] == set[ft_strlen(set) - 1])
 						flag++;

@@ -8,6 +8,8 @@ This tool builds rectangular random valid maps that is customizable to everyone'
 
 After cloning the repo, run "make".
 
+if you want to use the maze generator run "make maze"
+
 ### Mandatory part map
 
 if you just did the mondatory part you will want to run the following command:
@@ -25,6 +27,15 @@ C as in collectables
 E as in exits
     
 P as in player
+
+## how to use maze generator
+
+	./maze_maker [length] [width] [nbr of coins] [file name]
+
+you will find the map generated in the maps folder it is guaranteed to have a valid path.
+
+have fun with it :D.
+
 
 ### Bonus part map
 
