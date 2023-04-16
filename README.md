@@ -3,6 +3,8 @@
 As a fellow 1337/42 student, I had to manually write a 2D map to test my [So_long game](https://github.com/ELmounikor/Ninja-Froggy-s-Treasure-Hunt). 
 We have to test it in different sizes and combinations which can be time consuming for all of us. 
 This tool builds rectangular random valid maps that is customizable to everyone's use!
+
+
 [UPDATE] : This current version was built by Mohamed yahdih Souiyeh using c++ which checks if there is a valid path for the player to win (please show him some support)
 
 ## How to use
