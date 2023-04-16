@@ -1,51 +1,37 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mel-kora <mel-kora@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/11/20 16:48:53 by mel-kora          #+#    #+#              #
-#    Updated: 2022/05/31 22:37:45 by mel-kora         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = maze_maker
 
-MAP_SRCS	=	map_generator.c\
-				Libft/ft_putendl_fd.c\
-				Libft/ft_strlen.c\
-				Libft/ft_atoi.c\
-				Libft/ft_error.c
+CC = @g++
+
+SRCS = maze_generator.cpp BFS_search.cpp
+
+OBJS = $(SRCS:.cpp=.o)
+
+CPPFLAGS = -Wall -Werror -O3
+
+.cpp.o:
+	${CC} ${CPPFLAGS} -c $< -o $@
+
+all : $(OBJS)
+	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME)
+	@echo "\033[1;93m   ╔═╗┌─┐    ┬  ┌─┐┌┐┌┌─┐   ┬─┐┌─┐┌┐┌┌┬┐┌─┐┌┬┐   ┌┬┐┌─┐┌─┐   ┌─┐┌─┐┌┐┌┌─┐┬─┐┌─┐┌┬┐┌─┐┬─┐\033[0m"
+	@echo "\033[1;93m───╚═╗│ │    │  │ │││││ ┬───├┬┘├─┤│││ │││ ││││───│││├─┤├─┘───│ ┬├┤ │││├┤ ├┬┘├─┤ │ │ │├┬┘\033[0m"
+	@echo "\033[1;93m   ╚═╝└─┘────┴─┘└─┘┘└┘└─┘   ┴└─┴ ┴┘└┘─┴┘└─┘┴ ┴   ┴ ┴┴ ┴┴     └─┘└─┘┘└┘└─┘┴└─┴ ┴ ┴ └─┘┴└─\033[0m"
+	@echo "\033[1;93m                        USAGE : ./executable [length] [width] [nbr of coins] [file name]\033[0m"
+
+USAGE : ./executable [length] [width] [nbr of coins] [file name]
+run : all
+	$(NAME)
+
+clean : 
+	@rm -rf $(OBJS)
+	@echo "\033[1;94m	* files deleted *\033[0m"
+
+fclean : clean
+	@rm -rf $(NAME)
+	@echo "\033[1;94m	ʕ•́ᴥ•̀ʔっ\033[0m"
+
+re : fclean all
 
 
-MAP_OBJS	=	${MAP_SRCS:.c=.o}
 
-MAP_NAME	=	map_maker
-
-CC			=	gcc
-
-RM			=	rm -rf
-
-CFLAGS		=	-Wall -Werror -Wextra #-g -fsanitize=address
-
-.c.o:
-			${CC} ${CFLAGS} -c $< -o $@
-
-all:		${MAP_NAME}
-
-${MAP_NAME}:${MAP_OBJS}
-			${CC} ${CFLAGS} ${MAP_OBJS} -o ${MAP_NAME}
-			############################################################################################################
-			##########                                                                                        ##########
-			########## Run "./map_maker "10CEMP" 20 30 10 new_map.ber" to make a 20 * 30 map with 10 monsters ##########
-			##########                                                                                        ##########
-			############################################################################################################
-
-clean:
-			${RM} ${OBJS} ${MAP_OBJS}
-
-fclean:		clean
-			${RM} ${NAME} ${MAP_NAME}
-
-re:			fclean all
-
-.PHONY:		all clean fclean re
+.PHONY: clean fclean re run
