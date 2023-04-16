@@ -15,7 +15,7 @@ if you want to use the maze generator run "make maze"
 
 if you just did the mondatory part you will want to run the following command:
 
-    ./map_maker "10CEP" [number_of_rows] [number_of_columns] [file_name]
+    ./maze_maker [number_of_rows] [number_of_columns] [file_name]
 
 "10CEP" = map characters
 
@@ -40,9 +40,9 @@ have fun with it :D.
 
 ### Bonus part map
 
-In case you did the bonus part you may want to run  the following command:
+In case you did the bonus part you may want to run the following command using the previous version
 
-    ./map_maker "10CEMP" [number_of_rows] [number_of_columns] [number_of_monsters >= 1] [file_name]
+    ./maze_maker _maker "10CEMP" [number_of_rows] [number_of_columns] [number_of_monsters >= 1] [file_name]
 
 "10CEMP" = map characters
 
