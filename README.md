@@ -3,10 +3,13 @@
 As a fellow 1337/42 student, I had to manually write a 2D map to test my [So_long game](https://github.com/ELmounikor/Ninja-Froggy-s-Treasure-Hunt). 
 We have to test it in different sizes and combinations which can be time consuming for all of us. 
 This tool builds rectangular random valid maps that is customizable to everyone's use!
+[UPDATE] : This current version was built by Mohamed yahdih Souiyeh using c++ which checks if there is a valid path for the player to win (please show him some support)
 
 ## How to use
 
 After cloning the repo, run "make".
+
+if you want to use the maze generator run "make maze"
 
 ### Mandatory part map
 
@@ -25,6 +28,15 @@ C as in collectables
 E as in exits
     
 P as in player
+
+## how to use maze generator
+
+	./maze_maker [length] [width] [nbr of coins] [file name]
+
+you will find the map generated in the maps folder it is guaranteed to have a valid path.
+
+have fun with it :D.
+
 
 ### Bonus part map
 
@@ -50,4 +62,3 @@ P as in player
 
 You can change the map characters in order to customize it to your project needs, it only has to be a set of 5 or 6 characters. Have fun with it!
 
-PS: This tool does not check if there is a valid path for the player to win but it may soon...
