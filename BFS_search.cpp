@@ -32,14 +32,8 @@ bool	bfs_search(std::vector<std::vector<nodes> > &map, s_cords source, std::vect
 		Q.pop();
 		if (vst_last.c == map[current.y][current.x].c){
 			vst_last.times = 0;
-			if (Q.empty()){
-				if (check_vst_first(vst_first)){
-					return true;
-				}
-				else{
-					return false;
-				}
-			}
+			if (Q.empty())
+				break ;
 			Q.push(current);
 			continue ;
 		}

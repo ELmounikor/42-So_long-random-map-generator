@@ -10,17 +10,24 @@
 # include <math.h>
 # include <fstream>
 # include "BFS_search.hpp"
+# include "wall_carver.hpp"
 
 enum {
 	VER,
 	HOR,
 };
 
+enum {
+	WALL_ADDR = 1,
+	WALL_CARVER,
+};
+
 # define RES 2
 # define DIST(x1,x2) ((x2) - (x1))
 
 enum {
-	LENGTH = 1,
+	MAZE_TYPE = 1,
+	LENGTH,
 	WIDTH,
 	COINS_COUNT,
 	FILE_NAME,

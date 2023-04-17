@@ -84,7 +84,7 @@ void	recurs_devide(std::vector<std::string> &map, s_cords start, size_t length, 
 	recurs_devide (map, n_start, new_length, new_width);
 }
 
-void	add_elements(size_t C, std::vector <std::string> &map, char **av, size_t length, size_t width, s_cords &p_cords)
+void	add_elements(size_t C, std::vector <std::string> &map, char **av, size_t length, size_t width, s_cords &p_cords, int maze_type)
 {
 		bool P = false;
 		bool E = false;
@@ -123,6 +123,10 @@ void	add_elements(size_t C, std::vector <std::string> &map, char **av, size_t le
 		}
 
 		//adding exit
+		if (maze_type == WALL_CARVER){
+			map[1][1] = 'E';
+			return ;
+		}
 		while (E == false){
 			x = rand() % length;
 			y = rand() % width;
@@ -138,57 +142,74 @@ void	add_elements(size_t C, std::vector <std::string> &map, char **av, size_t le
 
 int main(int ac, char **av)
 {
-	if (ac == 5){
+	if (ac == 6){
 		size_t width = strtoul(av[WIDTH], NULL, 10);
 		size_t length = strtoul(av[LENGTH], NULL, 10);
+		size_t maze_type = strtoul(av[MAZE_TYPE], NULL, 10);
 
-		std::vector <std::string> *tmp1 = new std::vector <std::string>(width, std::string(length, '1'));;
-		std::vector <std::string> &map = *tmp1;
 		std::ofstream output_file(std::string("maps/").append(av[FILE_NAME]), std::ios::out | std::ios::trunc);
-
-		start :
-		for (int i = 1; i < map.size() - 1; i++){
-			for (int j = 1; j < map[i].size() - 1; j++){
-				map[i][j] = '0';
-			}
-		}
-
-		s_cords start(1, 1);
-		recurs_devide(map, start, length - 2, width - 2);
-
 		s_cords p_cords(0, 0);
-		add_elements(strtoul(av[COINS_COUNT], NULL, 10), map, av, length, width, p_cords);
-		
-		std::vector<std::vector<nodes> > *tmp2 = new std::vector<std::vector<nodes> >(width, std::vector<nodes>(length, nodes('1', WHITE, 0)));
-		std::vector<std::vector<nodes> > &bfs_map = *tmp2;
-		size_t C = 0;
-		for (int i = 0; i < map.size(); i++){
-			for (int j = 0; j < map[i].size(); j++){
-				if (map[i][j] == '1'){
-					bfs_map[i][j].c = map[i][j];
-					output_file << map[i][j];
-				}
-				if (map[i][j] == '0' || map[i][j] == '3' || map[i][j] == 'C' || map[i][j] == 'P' || map[i][j] == 'E')
-				{
-					if (map[i][j] == '3')
-						map[i][j] = '0';
-					if (map[i][j] == 'C')
-						C++;
-					bfs_map[i][j].c = map[i][j];
-					output_file << map[i][j];
+
+		if (maze_type == WALL_ADDR){
+			std::vector <std::string> map = create_grid(length, width, false);
+			start :
+			for (int i = 1; i < map.size() - 1; i++){
+				for (int j = 1; j < map[i].size() - 1; j++){
+					map[i][j] = '0';
 				}
 			}
-			if (i != map[i].size() - 1)
-				output_file << std::endl;
-		}
-		output_file.close();
 
-		std::vector<vst_element> vst_frst;
-		vst_frst.push_back(vst_element('C', C));
-		if (!bfs_search(bfs_map, p_cords, vst_frst, vst_element('E', 1)))
-			goto start;
+			s_cords start(1, 1);
+			recurs_devide(map, start, length - 2, width - 2);
+
+			add_elements(strtoul(av[COINS_COUNT], NULL, 10), map, av, length, width, p_cords, maze_type);
+
+			std::vector<std::vector<nodes> > *tmp2 = new std::vector<std::vector<nodes> >(width, std::vector<nodes>(length, nodes('1', WHITE, 0)));
+			std::vector<std::vector<nodes> > &bfs_map = *tmp2;
+			size_t C = 0;
+			for (int i = 0; i < map.size(); i++){
+				for (int j = 0; j < map[i].size(); j++){
+					if (map[i][j] == '1'){
+						bfs_map[i][j].c = map[i][j];
+						output_file << map[i][j];
+					}
+					if (map[i][j] == '0' || map[i][j] == '3' || map[i][j] == 'C' || map[i][j] == 'P' || map[i][j] == 'E')
+					{
+						if (map[i][j] == '3')
+							map[i][j] = '0';
+						if (map[i][j] == 'C')
+							C++;
+						bfs_map[i][j].c = map[i][j];
+						output_file << map[i][j];
+					}
+				}
+				if (i != map[i].size() - 1)
+					output_file << std::endl;
+			}
+			output_file.close();
+
+			std::vector<vst_element> vst_frst;
+			vst_frst.push_back(vst_element('C', C));
+			if (!bfs_search(bfs_map, p_cords, vst_frst, vst_element('E', 1)))
+				goto start;
+		}
+		else if (maze_type == WALL_CARVER){
+			std::vector <std::string> map = create_grid(length, width, false);
+
+			backtracker_maze(map, frames(1, 1, std::vector <std::pair<int, int> >()), 1337);
+
+			add_elements(strtoul(av[COINS_COUNT], NULL, 10), map, av, length, width, p_cords, maze_type);
+
+			for (int i = 0; i < map.size(); i++){
+				for (int j = 0; j < map[i].size(); j++){
+					output_file << map[i][j];
+				}
+				if (i != map[i].size() - 1)
+					output_file << std::endl;
+			}
+		}
 	}
 	else
-		std::cout << "USAGE : ./executable [length] [width] [nbr of coins] [file name]" << std::endl;
+		std::cout << "USAGE : ./executable [type of maze: 1 or 2] [length] [width] [nbr of coins] [file name]" << std::endl;
 	return 0;
 }
