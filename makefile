@@ -6,7 +6,7 @@ SRCS = maze_generator.cpp BFS_search.cpp wall_carver.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-CPPFLAGS = -Wall -Werror -O3 -std=c++11
+CPPFLAGS = -O3 -std=c++11
 
 .cpp.o:
 	${CC} ${CPPFLAGS} -c $< -o $@
