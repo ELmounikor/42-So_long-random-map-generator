@@ -5,7 +5,7 @@ We have to test it in different sizes and combinations which can be time consumi
 This tool builds rectangular random valid maps that is customizable to everyone's use!
 
 
-[UPDATE] : This current version was built by Mohamed yahdih Souiyeh using c++ which checks if there is a valid path for the player to win (please show him some support)
+[ UPDATE ]: This current version was built by [@mohamed-souiyeh](https://github.com/mohamed-souiyeh) using C++ which checks if there is a valid path for the player to win (please show him some support)
 
 ## How to use
 
