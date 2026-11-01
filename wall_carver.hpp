@@ -1,5 +1,6 @@
 #pragma once
 
+# include <stack>
 # include "maze_generator.hpp"
 
 struct frames{

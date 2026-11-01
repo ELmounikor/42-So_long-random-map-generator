@@ -14,7 +14,7 @@ struct s_cords
 
 	s_cords(s_cords const &copy): x(copy.x), y(copy.y){}
 
-	s_cords &operator = (s_cords &assign){
+	s_cords &operator = (const s_cords &assign){
 		x = assign.x;
 		y = assign.y;
 		return *this;
